@@ -4,7 +4,7 @@ import time
 print('\nWelcome to Hangman\n')
 time.sleep(1)
 
-pWords=list()
+pWords=list() 
 
 #Open a dictonary of words and store them in pWords as list
 fhand=open('dict.txt')
@@ -54,7 +54,7 @@ def displayRiddle(): #Display the Riddle
 def showLines():
     print('x'+'-'*len(riddle)+'x')
 
-def guessChecker(): #Check if won
+def guessChecker(): #Check if win
     guess=8
     while guess!=0:
         if '*' not in riddle:
@@ -66,14 +66,14 @@ def guessChecker(): #Check if won
         displayRiddle()
         showLines()
         print('\nGuess a letter')
-        letter=input().upper()
-        if letter in word and letter in nonriddle:
+        letter=input().upper() #Ask user to guess a letter and convert it to uppercase
+        if letter in word and letter in nonriddle: #Check if letter is among the words and the missing letters
             while letter in word:
-                pos=word.index(letter)
-                riddle[pos]=word[pos]
-                word[pos]='*'
+                pos=word.index(letter) #Find the index of all the inputted letters  
+                riddle[pos]=word[pos] #Replace * by the  missing letter
+                word[pos]='*' #Replace the letter by * in word
             continue
-        guess-=1
+        guess-=1 #Reduce guess by 1
     if '*' in riddle:
         print('\nYou lost! The word was '+copyWord)
 
