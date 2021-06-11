@@ -4,13 +4,17 @@ import time
 print('\nWelcome to Hangman\n')
 time.sleep(1)
 
-pWords=list() 
+pWords=list()
 
 #Open a dictonary of words and store them in pWords as list
-fhand=open('dict.txt')
-for lines in fhand:
-    lines=lines.strip()
-    pWords.append(lines)
+try:
+    fhand=open('dict.txt')
+    for lines in fhand:
+        lines=lines.strip()
+        pWords.append(lines)
+
+except:
+    pWords=['Elephant','Aeroplane','Things','Rocket','Eraser','Computer','Pillow','Movie','Telephone','Internet','Programming']
 
 def findWords(): #Select a random word from dictionary
     global word, copyWord
@@ -69,7 +73,7 @@ def guessChecker(): #Check if win
         letter=input().upper() #Ask user to guess a letter and convert it to uppercase
         if letter in word and letter in nonriddle: #Check if letter is among the words and the missing letters
             while letter in word:
-                pos=word.index(letter) #Find the index of all the inputted letters  
+                pos=word.index(letter) #Find the index of all the inputted letters
                 riddle[pos]=word[pos] #Replace * by the  missing letter
                 word[pos]='*' #Replace the letter by * in word
             continue
@@ -84,6 +88,7 @@ def main():
     hint()
     generateRiddle()
     guessChecker()
+
 
 main()
 
