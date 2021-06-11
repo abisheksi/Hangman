@@ -86,3 +86,5 @@ def main():
     guessChecker()
 
 main()
+
+time.sleep(3)
